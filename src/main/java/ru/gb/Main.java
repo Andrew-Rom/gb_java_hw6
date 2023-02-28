@@ -19,6 +19,13 @@ public class Main {
         Cat murzik = new Cat("Murzik", 15);
         Cat barsik = new Cat("Barsik"); // appetite = 10
 
+        int catQuantity = 5;
+        Cat[] cats = new Cat[catQuantity];
+        for (int i = 0; i < cats.length; i++) {
+            cats[i] = new Cat("cat" + (i + 1), 10 + 2 * i);
+        }
+
+
         Plate plate = new Plate(200);
 
 //        while (true) {
