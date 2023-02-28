@@ -17,6 +17,14 @@ public class Plate {
         return false;
     }
 
+    public boolean increaseFood(int fullPlate) {
+        if (food < fullPlate) {
+            food = fullPlate;
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString() {
         return "Plate[" + food + "]";
