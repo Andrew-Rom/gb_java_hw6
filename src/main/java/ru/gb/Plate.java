@@ -17,12 +17,8 @@ public class Plate {
         return false;
     }
 
-    public boolean increaseFood(int fullPlate) {
-        if (food < fullPlate) {
-            food = fullPlate;
-            return true;
-        }
-        return false;
+    public void increaseFood(int fullPlate) {
+        if (food < fullPlate) food = fullPlate;
     }
 
     @Override

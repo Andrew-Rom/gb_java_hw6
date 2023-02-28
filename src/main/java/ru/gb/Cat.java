@@ -42,6 +42,10 @@ public class Cat {
         satiety = false;
     }
 
+    public boolean isHungry() {
+        return (!satiety);
+    }
+
     @Override
     public String toString() {
         return name + "{appetite=" + appetite + ", satiety=" + satiety + "}";

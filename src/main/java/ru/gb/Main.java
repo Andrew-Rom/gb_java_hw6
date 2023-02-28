@@ -28,11 +28,25 @@ public class Main {
         Plate plate = new Plate(200);
 
         while (true) {
-            for (Cat cat:cats) {
-                cat.eat(plate);
-                cat.makeHungry();
+            boolean plateIsEmpty = false;
+            while (!plateIsEmpty) {
+                for (Cat cat : cats) {
+                    System.out.println("Quantity of food before feeding: " + plate);
+                    System.out.println(cat);
+                    cat.eat(plate);
+                    if (cat.isHungry()) {
+                        plateIsEmpty = true;
+                        System.out.println(cat + " is still hungry because the plate was empty");
+                        break;
+                    } else {
+                        System.out.println(cat + " is fed up");
+                        System.out.println("Quantity of food after feeding: " + plate + "\n");
+                        cat.makeHungry();
+                    }
+                }
             }
             plate.increaseFood(200);
+            System.out.println("The plate was refilled but other cats is hungry again. \n");
             Thread.sleep(1000);
         }
     }
