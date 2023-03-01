@@ -17,8 +17,12 @@ public class Plate {
         return false;
     }
 
-    public void increaseFood(int fullPlate) {
-        if (food < fullPlate) food = fullPlate;
+    public void increaseFood(int foodToIncrease) {
+        food = food + foodToIncrease;
+    }
+
+    public Integer qtyFood() {
+        return food;
     }
 
     @Override

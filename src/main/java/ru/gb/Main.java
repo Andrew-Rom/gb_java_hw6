@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         // Кот (имя, аппетит, сытность)
         // Тарелка (содержит какое-то количество еды)
-        // Кот ест из тарлеки. Если в тарелке недостаточно еды - кот ее не трогает
+        // Кот ест из тарелке. Если в тарелке недостаточно еды - кот ее не трогает
 
         // ДЗ:
         // while (true) -> while (!plate.isEmpty())
@@ -13,7 +13,7 @@ public class Main {
         // В конце каждого цикла мы досыпаем в тарелку еду.
         // Для досыпания еды сделать метод increaseFood в классе Plate.
         // 2. Поменять поле satiety у кота с boolean на int.
-        // Допустим у кота апптит 10, сытность 3. Значит кот захочет поесть 7 единиц.
+        // Допустим у кота аппетит 10, сытность 3. Значит кот захочет поесть 7 единиц.
         // 3. * Доработать поток thread в классе Cat, чтобы он каждую секунду уменьшал сытость кота на 1.
 
 //        Cat murzik = new Cat("Murzik", 15);
@@ -25,10 +25,12 @@ public class Main {
             cats[i] = new Cat("cat-" + (i + 1), 10 + 2 * i);
         }
 
-        Plate plate = new Plate(200);
+        Plate plate = new Plate(199);
 
         while (true) {
             boolean plateIsEmpty = false;
+            int foodInPlate = plate.qtyFood();
+            int foodCounter = 0;
             while (!plateIsEmpty) {
                 for (Cat cat : cats) {
                     System.out.println("Quantity of food before feeding: " + plate);
@@ -42,12 +44,16 @@ public class Main {
                         System.out.println(cat + " is fed up");
                         System.out.println("Quantity of food after feeding: " + plate + "\n");
                         cat.makeHungry();
+
+                        foodCounter += (foodInPlate - plate.qtyFood());
+                        foodInPlate = plate.qtyFood();
+                        System.out.println(foodCounter);
                     }
                 }
             }
-            plate.increaseFood(200);
+            plate.increaseFood(foodCounter);
             System.out.println("The plate was refilled but other cats is hungry again. \n");
-            Thread.sleep(1000);
+            Thread.sleep(10000);
         }
     }
 
