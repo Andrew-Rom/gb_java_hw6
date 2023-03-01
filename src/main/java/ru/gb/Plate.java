@@ -8,13 +8,8 @@ public class Plate {
         this.food = food;
     }
 
-    public boolean decreaseFood(int foodToDecrease) {
-        if (food >= foodToDecrease) {
-            food = food - foodToDecrease;
-            return true;
-        }
-
-        return false;
+    public void decreaseFood(int foodToDecrease) {
+        food = food - foodToDecrease;
     }
 
     public void increaseFood(int foodToIncrease) {

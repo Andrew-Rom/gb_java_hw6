@@ -22,7 +22,7 @@ public class Cat {
             while (true) {
                 if (satiety > 0) satiety -= 1;
                 try {
-                    Thread.sleep(5 * 1000L);
+                    Thread.sleep(1000L);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -33,15 +33,14 @@ public class Cat {
     }
 
     public void eat(Plate plate) {
-        if (satiety < appetite) {
-            satiety = plate.decreaseFood(appetite - satiety);
+        if ((satiety < appetite) && (plate.qtyFood() >= (appetite - satiety))) {
+            plate.decreaseFood(appetite - satiety);
+            satiety = appetite;
+        } else if (((satiety < appetite) && (plate.qtyFood() < (appetite - satiety)))) {
+            satiety = satiety + plate.qtyFood();
+            plate.decreaseFood(plate.qtyFood());
         }
     }
-
-    public void makeHungry() {
-        satiety = 0;
-    }
-
 
     public int getAppetite() {
         return appetite;
@@ -49,10 +48,6 @@ public class Cat {
 
     public int getSatiety() {
         return satiety;
-    }
-
-    public void setSatiety(int eatenFood) {
-        satiety = Math.min((eatenFood + satiety), appetite);
     }
 
     @Override
