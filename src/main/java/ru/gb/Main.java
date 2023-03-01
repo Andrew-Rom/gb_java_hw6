@@ -18,7 +18,7 @@ public class Main {
             while (plate.qtyFood() > 0) {
                 for (Cat cat : cats) {
                     System.out.println("Quantity of food before feeding: " + plate.qtyFood());
-                    System.out.println(cat + "is hungry.");
+                    System.out.println(cat + " is hungry.");
                     if (cat.getSatiety() == cat.getAppetite()) {
                         System.out.println(cat + " does not want to eat.");
                     } else {
